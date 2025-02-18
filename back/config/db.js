@@ -5,9 +5,13 @@ dotenv.config();
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
+        const mongoUri = process.env.MONGO_URI;
+        if (!mongoUri) {
+            throw new Error('MONGO_URI is not defined in the environment variables');
+        }
+        await mongoose.connect(mongoUri, {
+            // useNewUrlParser: true,
+            // useUnifiedTopology: true,
         });
         console.log('MongoDB Connected');
     } catch (error) {
@@ -17,3 +21,6 @@ const connectDB = async () => {
 };
 
 module.exports = connectDB;
+
+// surCK4fkdIJ3Q7AC
+// nathashais21
